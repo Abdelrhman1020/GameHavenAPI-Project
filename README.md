@@ -196,14 +196,14 @@ All endpoints return JSON. Authentication requires a Bearer token in the Authori
 
 | Method | Endpoint | Description | Auth Required
 |--------|----------|-------------|---------------
-| POST   | /api/orders | Place an order | User(JWT)
+| POST   | /api/orders | Place an order | User(JWT) 
 | GET    | /api/orders | Get the user's order history | User(JWT)
 
 ### ⭐ Reviews(Optional)
 
 | Method | Endpoint | Description | Auth Required
 |--------|----------|-------------|---------------
-| GET    | /api/reviews/:gameId | Get reviews for a specific game | 
+| GET    | /api/reviews/:gameId | Get reviews for a specific game | No
 | POST   | /api/reviews/:gameId | Add a review for a game | User(JWT)
 
 ### 📂 Categories(Optional)
