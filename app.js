@@ -1,3 +1,4 @@
+import loadEnv from './config/env.js';
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
@@ -7,7 +8,7 @@ import authRoutes from './routes/auth.js';
 
 
 
-
+loadEnv();
 dotenv.config();
 const app = express();
 app.use(express.json());
