@@ -1,4 +1,4 @@
-export const logger = (req, res, next) => {
+const logger = (req, res, next) => {
   const now = new Date().toISOString();
   const method = req.method;
   const url = req.originalUrl;
@@ -7,3 +7,5 @@ export const logger = (req, res, next) => {
 
   next();
 };
+
+export default logger;

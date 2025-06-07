@@ -1,8 +1,4 @@
-import supertest from "supertest";
-import { app } from "../app.js";
-import mongoose from "mongoose";
-
-const request = supertest(app);
+import { request } from "./jest.setup";
 
 describe("Category Controller", () => {
   let userId = null;
@@ -12,7 +8,7 @@ describe("Category Controller", () => {
   beforeAll(async () => {
     const user = {
       name: "Mohamed",
-      email: "mohamed@email.com",
+      email: `mohamed${Date.now()}@email.com`,
       password: "test123"
     };
 
@@ -37,7 +33,7 @@ describe("Category Controller", () => {
     
     expect(res.status).toBe(200);
     expect(res.body.message).toBe("Category Added Successfully!");
-    expect(res.body.data).not.toBeUndefined();
+    expect(res.body.data).toHaveProperty("name");
   });
 
   it("PUT /categories/:categoryId - should update category name", async () => {
@@ -54,13 +50,4 @@ describe("Category Controller", () => {
     expect(res.status).toBe(200);
     expect(res.body.message).toBe("Category Deleted Successfully!");
   });
-
-  afterAll(async ()=> {
-    const collections = mongoose.connection.collections;
-
-    for (const key in collections) {
-        const collection = collections[key];
-        await collection.deleteMany();
-    }
-  })
 });

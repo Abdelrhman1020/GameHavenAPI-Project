@@ -4,9 +4,11 @@ import morgan from 'morgan';
 import cors from 'cors';
 import authRoutes from './routes/auth.routes.js';
 import connectDB from './config/db.js';
-import { logger } from './middleware/logger.middleware.js';
+import logger from './middleware/logger.middleware.js';
 import { cartRouter } from './routes/cart.routes.js';
 import { categoryRouter } from './routes/category.routes.js';
+
+export let server;
 
 loadEnv();
 export const app = express();
@@ -26,5 +28,5 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 connectDB().then(()=> {
-    app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
+    server = app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
 }).catch((err) => console.error(err));
